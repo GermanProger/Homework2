@@ -1,0 +1,2 @@
+Here is just the idea (not the full implementation of polymorphism) 
+how polymorphism can be implemented.
