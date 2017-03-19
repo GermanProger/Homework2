@@ -11,15 +11,23 @@ namespace ACA.Homework2
     /// </summary>
     public class Admin : User
     {
-        public string SecretKey { get; private set; }
+        public string SecretKey { get; set; } = "";
         /// <summary>
-        /// autorizes like base class user + must enter a secret key
+        /// tries to sign in like base class user + must enter a secret key
         /// </summary>
-        public override void Autorize()
+        public override void SignIn()
         {
-            base.Autorize();
-            Console.WriteLine("Please, enter Secret Key");
-            SecretKey = Console.ReadLine();
+            Autorizator.Instance.GetRequestFromAdmin(this);
+        }
+
+        public static bool operator ==(Admin x, Admin y)
+        {
+            return (x.SecretKey == y.SecretKey) && ((User)x == (User)y) ? true : false;
+        }
+
+        public static bool operator !=(Admin x, Admin y)
+        {
+            return !(x == y);
         }
     }
 }

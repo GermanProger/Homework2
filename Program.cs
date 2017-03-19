@@ -23,7 +23,7 @@ namespace ACA.Homework2
                 int.TryParse(Console.ReadLine(), out parsed);
                 if (parsed > 0 && parsed < 4)
                 {
-                    users[parsed - 1].Autorize();
+                    users[parsed - 1].SignIn();
                     Autorizator.Instance.RecordUser(users[parsed - 1]);
                     if (Autorizator.Instance.IsAcceptable(users[parsed - 1]))
                     {

@@ -8,18 +8,42 @@ namespace ACA.Homework2
 {
     public class User
     {
-        public string Username { get; protected set; }
-        public string Password { get; protected set; }
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
 
         /// <summary>
-        /// Tries to autorize
+        /// Tries to sign in
         /// </summary>
-        public virtual void Autorize()
+        public virtual void SignIn()
         {
-            Console.WriteLine("Please, enter Username");
-            Username = Console.ReadLine();
-            Console.WriteLine("Please, enter Password");
-            Password = Console.ReadLine();
+            Autorizator.Instance.GetRequestFromUser(this);
+        }
+        /// <summary>
+        /// overloading operator == for comfort
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public static bool operator ==(User x, User y)
+        {
+            return (x.Username.Equals(y.Username) && x.Password.Equals(y.Password)) ? true : false;
+        }
+
+        public static bool operator !=(User x, User y)
+        {
+            return !(x == y);
+        }
+
+        public override bool Equals(object obj)
+        {
+            try
+            {
+                return this == (User)obj;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

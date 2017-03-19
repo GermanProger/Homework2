@@ -11,10 +11,9 @@ namespace ACA.Homework2
     /// </summary>
     public class Guest : User
     {
-        public override void Autorize()
+        public override void SignIn()
         {
-            Console.WriteLine("Please, enter Username");
-            Username = Console.ReadLine();
+            Autorizator.Instance.GetRequestFromGuest(this);
         }
     }
 }
